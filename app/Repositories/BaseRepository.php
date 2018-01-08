@@ -6,7 +6,6 @@ use Bosnadev\Repositories\Contracts\RepositoryInterface;
 use Bosnadev\Repositories\Eloquent\Repository;
 use Carbon\Carbon;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Illuminate\Support\Facades\File;
 use App\Helpers\ImageHelper;
 
 class BaseRepository extends Repository implements RepositoryInterface
@@ -102,12 +101,7 @@ class BaseRepository extends Repository implements RepositoryInterface
      */
     public function deleteImage($path)
     {
-        $realPath = public_path($path);
-        if (File::exists($realPath)) {
-            return File::delete($realPath);
-        }
-
-        return true;
+        return ImageHelper::deleteImage($path);
     }
 
     /**

@@ -73,4 +73,21 @@ class ImageHelper
 
         return true;
     }
+
+    /**
+     * Delete image by path
+     *
+     * @param string $path
+     *
+     * @return mixed
+     */
+    public static function deleteImage($path)
+    {
+        $realPath = public_path($path);
+        if (File::exists($realPath)) {
+            return File::delete($realPath);
+        }
+
+        return true;
+    }
 }
